@@ -27,12 +27,14 @@ import { HomeSkinConcerns } from "../home-skin-concerns";
 import { HomeFaq } from "../home-faq";
 import { HomeTestimonials } from "../home-testimonials";
 import { HomeViewSkeleton } from "../home-skeleton";
+import { orderTrendingProducts } from "../trending-order.mjs";
 
 import {
   useGetBrands,
   useGetCategories,
   useGetHomeSliders,
-  useGetHomeRecentProducts,
+  useGetHomeBestSellers,
+  useGetHomeTrendingProducts,
   useGetHomeCategoryProducts,
   useGetHomeFlashSale,
   useGetBlogs,
@@ -62,8 +64,8 @@ export function HomeView() {
   const { categoryProducts, isLoading: categoryProductsLoading } =
     useGetHomeCategoryProducts();
 
-  const { recentProducts, isLoading: recentProductsLoading } =
-    useGetHomeRecentProducts();
+  const { bestSellers, isLoading: bestSellersLoading } = useGetHomeBestSellers();
+  const { trendingProducts, isLoading: trendingProductsLoading } = useGetHomeTrendingProducts();
 
   const { flashSale, isLoading: flashSaleLoading } =
     useGetHomeFlashSale();
@@ -79,11 +81,11 @@ export function HomeView() {
     slidersLoading ||
     categoriesLoading ||
     brandsLoading ||
-    recentProductsLoading ||
+    bestSellersLoading ||
+    trendingProductsLoading ||
     flashSaleLoading ||
     popupDialogLoading;
 
-  const flashSaleLength = flashSale?.length || 0;
 
   // Skeleton
   if (isLoading) {
@@ -151,13 +153,9 @@ export function HomeView() {
               <HomeFlashSale flashSale={flashSale} />
             </div>
 
-            {flashSaleLength > 0 && (
-              <div className="col-span-1">
-                <HomeBestSellers
-                  products={recentProducts}
-                />
-              </div>
-            )}
+            <div className="col-span-1">
+              <HomeBestSellers products={bestSellers} />
+            </div>
           </div>
 
           {/* Featured Categories */}
@@ -167,7 +165,7 @@ export function HomeView() {
 
           {/* Trending Products */}
           <HomeTrendingProducts
-            products={recentProducts}
+            products={orderTrendingProducts(trendingProducts, bestSellers)}
           />
 
           {/* Testimonials */}

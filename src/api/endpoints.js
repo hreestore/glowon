@@ -25,6 +25,8 @@ export const endpoints = {
     slider: "sliders",
     categoryProducts: "home-categories",
     recentProducts: "recent-products",
+    bestSellers: "best-sellers",
+    trendingProducts: "trending-products",
     flashSale: "flash-sale",
     clients: "clients",
     testimonials: "testimonials",

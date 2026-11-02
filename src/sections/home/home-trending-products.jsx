@@ -139,7 +139,7 @@ export function HomeTrendingProducts({ products }) {
           <div>
             <h4 className="font-bold text-xl md:text-2xl">Trending Now</h4>
             <p className="text-sm text-gray-500 dark:text-gray-400">
-              Most popular products this week
+              Recent favorites and more to explore
             </p>
           </div>
         </div>
@@ -164,7 +164,7 @@ export function HomeTrendingProducts({ products }) {
             <ProductItem
               product={product}
               detailsHref={paths.product.details(product.slug)}
-              isTrending={index < 3}
+              isTrending={Boolean(product.sales_rank && product.sales_rank <= 3)}
             />
           </div>
         ))}

@@ -75,9 +75,9 @@ function BestSellerItem({ product, rank }) {
       {/* Image wrapper */}
       <div className="relative overflow-hidden rounded-2xl bg-gray-100 aspect-square">
         {/* Rank badge */}
-        <span className="absolute top-2 left-2 z-10 flex h-6 w-6 items-center justify-center rounded-full bg-yellow-400 text-xs font-bold text-yellow-900 shadow-sm">
+        {rank && <span className="absolute top-2 left-2 z-10 flex h-6 w-6 items-center justify-center rounded-full bg-yellow-400 text-xs font-bold text-yellow-900 shadow-sm">
           {rank}
-        </span>
+        </span>}
 
         {featured_image ? (
           <img
@@ -165,7 +165,7 @@ export function HomeBestSellers({ products }) {
               Best Sellers
             </h2>
             <p className="text-xs sm:text-sm text-gray-500">
-              Top-rated products loved by customers
+              Popular products and more to explore
             </p>
           </div>
         </div>
@@ -211,7 +211,7 @@ export function HomeBestSellers({ products }) {
               key={product.product_id}
               className="min-w-0 shrink-0 grow-0 pl-4 sm:pl-5 basis-[55%] sm:basis-1/3 md:basis-1/4 lg:basis-1/5"
             >
-              <BestSellerItem product={product} rank={index + 1} />
+              <BestSellerItem product={product} rank={product.sales_rank} />
             </div>
           ))}
         </div>

@@ -66,6 +66,16 @@ export const useGetHomeFlashSale = () => {
   };
 };
 
+export const useGetHomeBestSellers = () => {
+  const { data, error, isLoading } = useSWR(endpoints.home.bestSellers, fetcher);
+  return { bestSellers: data?.data || [], error, isLoading };
+};
+
+export const useGetHomeTrendingProducts = () => {
+  const { data, error, isLoading } = useSWR(endpoints.home.trendingProducts, fetcher);
+  return { trendingProducts: data?.data || [], error, isLoading };
+};
+
 export const useGetHomeTestimonial = () => {
   const { data, error, isLoading } = useSWR(
     endpoints.home.testimonials,
