@@ -153,9 +153,9 @@ export function HomeView() {
               <HomeFlashSale flashSale={flashSale} />
             </div>
 
-            <div className="col-span-1">
+            {/*<div className="col-span-1">
               <HomeBestSellers products={bestSellers} />
-            </div>
+            </div>*/}
           </div>
 
           {/* Featured Categories */}
